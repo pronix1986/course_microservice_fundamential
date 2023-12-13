@@ -1,0 +1,8 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/song
+    username: postgres
+    password: postgres
+  hibernate:
+    ddl-auto: update
