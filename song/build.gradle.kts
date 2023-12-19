@@ -17,9 +17,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
-
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql:42.7.0")
+    implementation("org.apache.commons:commons-collections4:4.4")
+    implementation("org.apache.commons:commons-lang3:3.14.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
