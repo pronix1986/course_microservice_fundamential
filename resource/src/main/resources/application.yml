@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/resource_db
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+resource:
+  allowed-csv-length: 200
+
+song:
+  api:
+    url: http://localhost:8081/api/v1
+
+server:
+  port: 8080

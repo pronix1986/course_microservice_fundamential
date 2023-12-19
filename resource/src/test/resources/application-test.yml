@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driverClassName: org.hsqldb.jdbcDriver
+    url: jdbc:hsqldb:mem:db
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.HSQLDialect
+
+
+resource:
+  allowed-csv-length: 200
+
+song:
+  api:
+    url: http://localhost:8081/api/v1
+
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+    org.apache.http: DEBUG
+    httpclient.wire: DEBUG
