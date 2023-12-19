@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  resource_db:
+    image: postgres:14-alpine
+    container_name: resource_pgdb
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: resource_db
+    volumes:
+      - resource_pgdata:/var/lib/postgresql/data
+  song_db:
+    image: postgres:14-alpine
+    container_name: song_pgdb
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: song_db
+    volumes:
+      - song_pgdata:/var/lib/postgresql/data
+
+volumes:
+  resource_pgdata:
+  song_pgdata:

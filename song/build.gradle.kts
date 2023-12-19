@@ -23,6 +23,7 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.14.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.h2database:h2:2.2.224")
 }
 
 tasks.test {

@@ -32,6 +32,9 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql:42.7.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.h2database:h2:2.2.224")
+    testImplementation("org.wiremock:wiremock-standalone:3.3.1")
+
 
 }
 
