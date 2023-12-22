@@ -1,26 +1,66 @@
 version: "3.9"
 services:
-  resource_db:
+  resource:
+    image: resource-local:1.0
+    container_name: resource
+    depends_on:
+      resource_pgdb:
+        condition: service_healthy
+    networks:
+      - local
+    ports:
+      - "8080:8080"
+    environment:
+      RESOURCE_DB_USERNAME: ${RESOURCE_DB_USERNAME}
+      RESOURCE_DB_PASSWORD: ${RESOURCE_DB_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://resource_pgdb:5432/resource_db
+      SONG_DOMAIN: song
+
+  song:
+    image: song-local:1.0
+    container_name: song
+    depends_on:
+      song_pgdb:
+        condition: service_healthy
+    networks:
+      - local
+    ports:
+      - "8081:8081"
+    environment:
+      SONG_DB_USERNAME: postgres
+      SONG_DB_PASSWORD: ${SONG_DB_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://song_pgdb:5432/song_db
+
+  resource_pgdb:
     image: postgres:14-alpine
     container_name: resource_pgdb
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
     restart: always
+    networks:
+      - local
     ports:
       - "5433:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${RESOURCE_DB_POSTGRES_PASSWORD}
       POSTGRES_DB: resource_db
     volumes:
       - resource_pgdata:/var/lib/postgresql/data
-  song_db:
+
+  song_pgdb:
     image: postgres:14-alpine
     container_name: song_pgdb
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
     restart: always
+    networks:
+      - local
     ports:
       - "5434:5432"
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: ${SONG_DB_POSTGRES_PASSWORD}
       POSTGRES_DB: song_db
     volumes:
       - song_pgdata:/var/lib/postgresql/data
@@ -28,3 +68,6 @@ services:
 volumes:
   resource_pgdata:
   song_pgdata:
+
+networks:
+  local:

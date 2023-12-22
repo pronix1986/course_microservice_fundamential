@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
@@ -5,8 +7,8 @@ plugins {
     application
 }
 
-group = "org.example"
-version = "unspecified"
+group = "com.epam.sp"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -40,4 +42,12 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.withType<BootJar> {
+    archiveFileName = "app.jar"
+}
+
+tasks.withType<JavaCompile> {
+    options.release = 17
 }

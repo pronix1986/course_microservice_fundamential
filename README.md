@@ -38,3 +38,12 @@ Same, database view:
 ![images/img_4.png](images/img_4.png)
 
 An example of an integration test is included as well.
+
+
+
+## Task 2
+### TL;DR
+Create Dockerfile, build
+Create DockerCompose, compose everything together
+
+## Task 2. Solution
