@@ -1,11 +1,15 @@
 spring:
+  sql:
+    init:
+      mode: always
   datasource:
-    url: jdbc:postgresql://localhost:5433/resource_db
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${resource-db-domain:localhost}:${resource-db-port:5433}/resource_db
+    username: ${resource-db-username:postgres}
+    password: ${resource-db-password:}
+    initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -15,7 +19,7 @@ resource:
 
 song:
   api:
-    url: http://localhost:8081/api/v1
+    url: http://${song-domain:localhost}:8081/api/v1
 
 server:
   port: 8080

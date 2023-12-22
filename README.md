@@ -38,3 +38,22 @@ Same, database view:
 ![images/img_4.png](images/img_4.png)
 
 An example of an integration test is included as well.
+
+
+
+## Task 2
+### TL;DR
+Create Dockerfile, build
+Create DockerCompose, compose everything together
+
+## Task 2. Solution
+Created naive Docker files for each module.
+Build commands (I use Podman):
+podman build . -t resource-local:1.0
+podman build . -t song-local:1.0 
+
+Created compose.yml.
+Starting command (dash is used as a separator because of Podman again):
+docker-compose up
+
+The rest of the testing is as in task1

@@ -7,6 +7,9 @@ plugins {
     application
 }
 
+group = "com.epam.sp"
+version = "1.0"
+
 repositories {
     mavenCentral()
 }
