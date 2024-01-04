@@ -1,0 +1,19 @@
+server:
+  port: 8088
+
+eureka.client.serviceUrl.defaultZone: http://${discovery-service-domain:localhost}:8761/eureka
+
+spring:
+  application.name: api-gateway
+  main.web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        - id: song-client
+          uri: lb://song-client
+          predicates:
+            - Path=/api/v1/songs/**
+        - id: resource-client
+          uri: lb://resource-client
+          predicates:
+            - Path=/api/v1/resources/**

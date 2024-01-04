@@ -48,7 +48,8 @@ public class ResourceController {
         return ResponseEntity.ok(resourceIds);
     }
 
-
-
-
+    @GetMapping("/test")
+    public String test() {
+        return "OK";
+    }
 }

@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: resource-client
   sql:
     init:
       mode: always
@@ -19,7 +21,10 @@ resource:
 
 song:
   api:
-    url: http://${song-domain:localhost}:8081/api/v1
+    #url: http://${song-domain:localhost}:8081/api/v1
+    url: http://${api-gateway-domain:localhost}:8088/api/v1
 
 server:
   port: 8080
+
+eureka.client.serviceUrl.defaultZone: http://${discovery-service-domain:localhost}:8761/eureka

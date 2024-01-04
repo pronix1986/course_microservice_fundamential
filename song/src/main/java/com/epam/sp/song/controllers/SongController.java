@@ -16,10 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/songs")
 public class SongController {
+    public static final int RAND = new Random().nextInt(); // for lb testing only
+
+    static {
+        System.out.println("Initializing with: " + RAND);
+    }
 
     private final SongService songService;
 
@@ -45,5 +51,10 @@ public class SongController {
     public ResponseEntity<SongIds> deleteMetadata(@PathVariable String ids) {
         final var songIds = songService.deleteByIds(ids);
         return ResponseEntity.ok(songIds);
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Init with: " + RAND;
     }
 }
