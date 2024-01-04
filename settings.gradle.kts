@@ -13,3 +13,5 @@ pluginManagement {
 }
 include("resource")
 include("song")
+include("discovery-service")
+include("api-gateway")

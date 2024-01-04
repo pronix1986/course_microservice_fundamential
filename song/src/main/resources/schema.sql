@@ -1,9 +1,9 @@
-CREATE TABLE public.song_metadata (
+CREATE TABLE IF NOT EXISTS public.song_metadata (
 	id serial4 NOT NULL,
 	CONSTRAINT song_metadata_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE public.song_metadata_metadata (
+CREATE TABLE IF NOT EXISTS public.song_metadata_metadata (
 	song_metadata_id int4 NOT NULL,
 	metadata varchar(255) NULL,
 	metadata_key varchar(255) NOT NULL,

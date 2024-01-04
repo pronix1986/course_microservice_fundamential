@@ -7,9 +7,6 @@ plugins {
     application
 }
 
-group = "com.epam.sp"
-version = "1.0"
-
 repositories {
     mavenCentral()
     maven("https://repo.spring.io/milestone")
@@ -17,22 +14,10 @@ repositories {
 }
 
 dependencies {
-
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
-
-
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql:42.7.0")
-    implementation("org.apache.commons:commons-collections4:4.4")
-    implementation("org.apache.commons:commons-lang3:3.14.0")
-
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("com.h2database:h2:2.2.224")
 }
 
 extra["springCloudVersion"] = "2023.0.0"
@@ -42,7 +27,6 @@ dependencyManagement {
     }
 }
 
-
 tasks.test {
     useJUnitPlatform()
 }
@@ -51,6 +35,6 @@ tasks.withType<BootJar> {
     archiveFileName = "app.jar"
 }
 
-tasks.withType<JavaCompile> {
-    options.release = 17
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
 }
