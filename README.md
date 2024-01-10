@@ -1,4 +1,4 @@
-# course_microservice_task1
+# course_microservice_fundamential
 ## Task1
 In this module you will need to create base structure of microservices system.
 During this task you need to implement the next two services:
@@ -72,7 +72,7 @@ service-registry is a Eureka Service Registry:
 API Gateway is used to direct request based on the url path and also (in case of 'song' microservice) to perform load balancing\
 (which is an integral part of Spring Cloud; activated with the use of lb:// pseudo-protocol in the API Gateway configuration. \
 Also, 'resource' microservice no longer makes call directly to 'song' microservice, but via API Gateway).\
-After the changes, the functionality remain intact. The initial request now is made to API Gateway endpoint:
+After the changes, the functionality remains intact. The initial request now is made to API Gateway endpoint:
 ![images/img_7.png](images/img_7.png)
 
 As for the orchestration, changed a bit a build process:
@@ -82,7 +82,7 @@ podman build ./discovery-service -t discovery-service:latest
 podman build ./api-gateway -t api-gateway:latest
 
 In compose.yml file, introduced two new services, set the dependency on discovery-service components for all its clients.\
-The notable difference, is that 'resource' and 'song' microservices does not have port mappings and just 'expose' their \
+The notable difference, is that 'resource' and 'song' microservices do not have port mappings and just 'expose' their \
 ports for the usage inside the local network only.
 
 In total, started discovery-service, api-gateway, resource, 2 song, 2 postgres db. With some delay, the functionality \
